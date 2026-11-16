@@ -240,37 +240,17 @@ html,body{overflow-x:clip}
 #videos{border-top:1px solid var(--line)}
 #cotizar{border-top:1px solid var(--line);background:var(--bg2)}
 #videos .head p:not(.kicker){margin-top:-4px}
-.yt-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
-@media(max-width:900px){.yt-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:560px){.yt-grid{grid-template-columns:1fr}}
-.yt-card{display:flex;flex-direction:column;width:100%;padding:0;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;cursor:pointer;color:var(--txt);font:inherit;transition:transform .3s,border-color .3s,box-shadow .3s}
-.yt-card:hover{transform:translateY(-5px);border-color:var(--gold);box-shadow:0 18px 40px -18px rgba(212,167,60,.5)}
-.yt-card:focus-visible{outline:3px solid var(--gold2);outline-offset:3px}
-@media(min-width:901px){.yt-card.destacado{grid-column:span 2;grid-row:span 2}.yt-card.destacado .yt-info b{font-size:19px}}
-.yt-thumb{position:relative;display:block;aspect-ratio:16/9;background:#120f0a;overflow:hidden}
-.yt-card.destacado .yt-thumb{flex:1 1 auto;min-height:0}
-.yt-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
-.yt-card:hover .yt-thumb img{transform:scale(1.05)}
-.yt-play{position:absolute;inset:0;display:grid;place-items:center;background:linear-gradient(180deg,transparent 40%,rgba(11,10,8,.55))}
-.yt-play>span{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;background:rgba(11,10,8,.72);border:2px solid var(--gold2);color:var(--gold2);transition:transform .25s,background .25s}
-.yt-card:hover .yt-play>span{transform:scale(1.1);background:var(--gold);color:#1a1305}
-.yt-info{display:block;padding:14px 16px 16px}
-.yt-info b{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:15px;line-height:1.35;font-weight:700}
-.yt-info small{display:block;margin-top:6px;color:var(--mut);font-size:13px}
-.yt-embed{grid-column:1/-1;max-width:980px;width:100%;margin:0 auto;aspect-ratio:16/9;border-radius:22px;overflow:hidden;border:2px solid var(--gold);box-shadow:0 30px 80px -30px rgba(212,167,60,.55);background:#000}
-.yt-embed iframe,.yt-marco iframe{width:100%;height:100%;border:0;display:block}
-.yt-vacio{grid-column:1/-1;display:grid;gap:4px;justify-items:center;text-align:center;padding:44px 20px;border:1px dashed var(--line);border-radius:var(--r);color:var(--mut)}
+.yt-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:22px}
+.yt-player{flex:1 1 420px;max-width:560px;min-width:0;aspect-ratio:16/9;border-radius:18px;overflow:hidden;background:#000;border:2px solid var(--gold);box-shadow:0 26px 70px -30px rgba(212,167,60,.6)}
+.yt-grid.vertical .yt-player{flex:0 1 330px;aspect-ratio:9/16}
+.yt-player iframe{width:100%;height:100%;border:0;display:block}
+@media(max-width:600px){.yt-grid{gap:16px}.yt-player{flex-basis:100%;border-radius:14px}.yt-grid.vertical .yt-player{flex-basis:calc(50% - 8px)}}
+.yt-vacio{flex:1 1 100%;display:grid;gap:4px;justify-items:center;text-align:center;padding:44px 20px;border:1px dashed var(--line);border-radius:var(--r);color:var(--mut)}
 .yt-vacio b{color:var(--gold2);font-size:18px}
-.yt-cargando{grid-column:1/-1;display:flex;justify-content:center;gap:8px;padding:60px 0}
+.yt-cargando{flex:1 1 100%;display:flex;justify-content:center;gap:8px;padding:60px 0}
 .yt-cargando i{width:10px;height:10px;border-radius:50%;background:var(--gold);animation:ytc 1s ease-in-out infinite}
 .yt-cargando i:nth-child(2){animation-delay:.15s}.yt-cargando i:nth-child(3){animation-delay:.3s}
 @keyframes ytc{50%{transform:translateY(-10px);opacity:.4}}
-.yt-modal{border:0;padding:0;background:transparent;width:min(1100px,94vw);max-width:none;max-height:none;margin:auto;overflow:visible}
-.yt-modal::backdrop{background:rgba(5,4,3,.9);backdrop-filter:blur(4px)}
-.yt-modal-in{position:relative}
-.yt-marco{aspect-ratio:16/9;width:100%;max-height:82vh;border-radius:16px;overflow:hidden;background:#000;border:2px solid var(--gold)}
-.yt-cerrar{position:absolute;right:0;top:-54px;width:44px;height:44px;border-radius:50%;border:1px solid var(--gold);background:rgba(11,10,8,.85);color:var(--gold2);font-size:20px;cursor:pointer}
-.yt-cerrar:hover{background:var(--gold);color:#1a1305}
 #galeria .center .btn,#videos .center .btn{gap:10px}
 </style>
 <script>document.documentElement.classList.add('js')</script>
@@ -305,14 +285,16 @@ window.TWILO_CONFIG = {
    Lo que se guarde en el panel tiene prioridad sobre esto. */
 window.TWILO_DEFAULTS = {
   // WhatsApp con indicativo 57, sin + ni espacios
-  WHATSAPP: "573132686038",
-  WHATSAPP_2: "573227122541",
+  WHATSAPP: "573227122541",
+  WHATSAPP_2: "",
 
   INSTAGRAM: "https://www.instagram.com/twilo_eventos",
   TIKTOK: "https://www.tiktok.com/@twilo.eventos",
   YOUTUBE: "https://www.youtube.com/@TwiloEventos-e6c",
   // ID del canal (empieza por UC). Con él la página muestra sola los videos nuevos.
   YOUTUBE_CANAL_ID: "UCe5arS2XkB23YNY-0GS5emg",
+  // Qué se muestra: "videos" (sin Shorts), "shorts" o "todos". Se ven los 2 más recientes.
+  YOUTUBE_TIPO: "videos",
 
   // Fondo del inicio (opcional): video o imagen
   HERO_VIDEO: "",
@@ -335,7 +317,7 @@ window.TWILO_DEFAULTS = {
   "url": "https://www.twiloeventos.com/",
   "logo": "https://www.twiloeventos.com/images/logo.png",
   "image": "https://www.twiloeventos.com/images/og.jpg",
-  "telephone": "+573132686038",
+  "telephone": "+573227122541",
   "address": { "@type": "PostalAddress", "addressLocality": "Bogotá", "addressRegion": "Bogotá D. C.", "addressCountry": "CO" },
   "areaServed": [{ "@type": "City", "name": "Bogotá" }, { "@type": "AdministrativeArea", "name": "Alrededores de Bogotá" }],
   "sameAs": ["https://www.instagram.com/twilo_eventos", "https://www.tiktok.com/@twilo.eventos", "https://www.youtube.com/@TwiloEventos-e6c"],
@@ -488,7 +470,7 @@ window.TWILO_DEFAULTS = {
   <!-- VIDEOS DE YOUTUBE (se actualiza solo con lo que suban al canal) -->
   <section class="sec" id="videos" data-grupo="Videos de YouTube">
     <div class="wrap">
-      <div class="head reveal"><p class="kicker" data-t="yt.kicker" data-label="Frase pequeña">Nuestro canal</p><h2 data-t="yt.titulo" data-label="Título (*dorado*)">Mira nuestros eventos en <span class="gold">video</span></h2><p data-t="yt.texto" data-label="Texto">Los videos más recientes de nuestro canal de YouTube. Dale play y vive la experiencia TWILO.</p></div>
+      <div class="head reveal"><p class="kicker" data-t="yt.kicker" data-label="Frase pequeña">Nuestro canal</p><h2 data-t="yt.titulo" data-label="Título (*dorado*)">Mira nuestros eventos en <span class="gold">video</span></h2><p data-t="yt.texto" data-label="Texto">Nuestros videos más recientes de YouTube. Dale play y vive la experiencia TWILO.</p></div>
       <div class="yt-grid" id="ytGrid" aria-live="polite"><div class="yt-cargando"><i></i><i></i><i></i></div></div>
       <div class="center reveal"><a href="https://www.youtube.com/@TwiloEventos-e6c" data-social="YOUTUBE" target="_blank" rel="noopener" class="btn btn-ghost"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8zM9.8 15.1V8.9L15.2 12z"/></svg> Suscríbete en YouTube</a></div>
     </div>
@@ -502,7 +484,7 @@ window.TWILO_DEFAULTS = {
         <h2 data-t="cot.titulo" data-label="Título (*dorado*)">Cotiza tu evento <span class="gold">gratis</span></h2>
         <p data-t="cot.texto" data-label="Texto">Cuéntanos sobre tu celebración y te enviamos una propuesta a la medida. Al enviar, te llevamos a WhatsApp con tu solicitud lista para que te respondamos más rápido.</p>
         <ul class="ticks" data-l="cot.ventajas" data-label="Ventajas con ✓ (una por línea)"><li>Respuesta rápida</li><li>Sin compromiso</li><li>Montaje adaptado a tu espacio y tus invitados</li></ul>
-        <div class="wa-lines"><a href="#" class="wa-line" data-wa="Hola TWILO EVENTOS, quiero cotizar un evento 🎉"><span class="ic"><svg viewBox="0 0 32 32"><path fill="#fff" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.6c-2 0-4-.6-5.7-1.6l-.4-.2-3.9 1 1-3.8-.3-.4A10.6 10.6 0 1 1 16 26.6z"/></svg></span><span><small>Escríbenos por WhatsApp</small><b data-num="1">313 268 6038</b></span></a><a href="#" class="wa-line" data-wa="Hola TWILO EVENTOS, quiero cotizar un evento 🎉" data-wa-num="2"><span class="ic"><svg viewBox="0 0 32 32"><path fill="#fff" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.6c-2 0-4-.6-5.7-1.6l-.4-.2-3.9 1 1-3.8-.3-.4A10.6 10.6 0 1 1 16 26.6z"/></svg></span><span><small>También por WhatsApp</small><b data-num="2">322 712 2541</b></span></a></div>
+        <div class="wa-lines"><a href="#" class="wa-line" data-wa="Hola TWILO EVENTOS, quiero cotizar un evento 🎉"><span class="ic"><svg viewBox="0 0 32 32"><path fill="#fff" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.6c-2 0-4-.6-5.7-1.6l-.4-.2-3.9 1 1-3.8-.3-.4A10.6 10.6 0 1 1 16 26.6z"/></svg></span><span><small>Escríbenos por WhatsApp</small><b data-num="1">322 712 2541</b></span></a></div>
       </div>
       <form class="form reveal" id="quoteForm" name="cotizacion" method="POST">
         <p class="hp"><label>No llenar <input name="empresa_web"></label></p>
@@ -549,9 +531,8 @@ window.TWILO_DEFAULTS = {
     </div>
     <div>
       <h3>Contacto</h3>
-      <a href="#" class="btn btn-gold sm" data-wa="Hola TWILO EVENTOS, quiero cotizar un evento 🎉">WhatsApp <span data-num="1">313 268 6038</span></a>
-      <a href="#" class="btn btn-gold sm" data-wa="Hola TWILO EVENTOS, quiero cotizar un evento 🎉" data-wa-num="2" style="margin-top:10px">WhatsApp <span data-num="2">322 712 2541</span></a>
-      <p class="phone-line">Llámanos: <a href="tel:+573132686038" data-tel="1">313 268 6038</a> · <a href="tel:+573227122541" data-tel="2">322 712 2541</a></p>
+      <a href="#" class="btn btn-gold sm" data-wa="Hola TWILO EVENTOS, quiero cotizar un evento 🎉">WhatsApp <span data-num="1">322 712 2541</span></a>
+      <p class="phone-line">Llámanos: <a href="tel:+573227122541" data-tel="1">322 712 2541</a></p>
       <div class="social">
         <a href="https://www.instagram.com/twilo_eventos" data-social="INSTAGRAM" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg><span data-social-txt="INSTAGRAM">@twilo_eventos</span></a>
         <a href="https://www.tiktok.com/@twilo.eventos" data-social="TIKTOK" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.5 3 2.5 5 5.5 5.2"/></svg><span data-social-txt="TIKTOK">@twilo.eventos</span></a>
@@ -639,14 +620,14 @@ function aplicarContenido(c) {
   $$('[data-l]').forEach(el => { const v = t[el.dataset.l]; if (typeof v === 'string') el.innerHTML = v.split('\n').map(x => x.trim()).filter(Boolean).map(x => `<li>${marcar(x, 'LI')}</li>`).join(''); });
   $$('[data-img]').forEach(el => { const v = img[el.dataset.img]; if (v) el.src = v; });
   $$('[data-img-poster]').forEach(el => { const v = img[el.dataset.imgPoster]; if (v) el.poster = v; });
-  const antes = { yt: CONFIG.YOUTUBE_CANAL_ID, reel: CONFIG.REEL_VIDEO, hero: CONFIG.HERO_VIDEO + CONFIG.HERO_IMAGE };
+  const antes = { yt: CONFIG.YOUTUBE_CANAL_ID + CONFIG.YOUTUBE_TIPO, reel: CONFIG.REEL_VIDEO, hero: CONFIG.HERO_VIDEO + CONFIG.HERO_IMAGE };
   Object.keys(aj).forEach(k => { if (k in CONFIG && k !== 'GALLERY') CONFIG[k] = aj[k]; });
   if (Array.isArray(c.galeria)) CONFIG.GALLERY = c.galeria;
   aplicarContacto();
   if (CONFIG.HERO_VIDEO + CONFIG.HERO_IMAGE !== antes.hero) aplicarFondoInicio();
   pintarGaleria(contenidoAplicado);
   const v = $('#reelVid'); if (v && v.getAttribute('src') && CONFIG.REEL_VIDEO !== antes.reel) { v.src = CONFIG.REEL_VIDEO; v.play().catch(() => {}); }
-  if (CONFIG.YOUTUBE_CANAL_ID !== antes.yt && window.__ytCargado) window.__ytRecargar && window.__ytRecargar();
+  if (CONFIG.YOUTUBE_CANAL_ID + CONFIG.YOUTUBE_TIPO !== antes.yt && window.__ytCargado) window.__ytRecargar && window.__ytRecargar();
   contenidoAplicado = true;
 }
 
@@ -799,67 +780,80 @@ $('#year').textContent = new Date().getFullYear();
 })();
 </script>
 
-<dialog class="yt-modal" id="ytModal" aria-label="Reproductor de video">
-  <div class="yt-modal-in">
-    <button class="yt-cerrar" id="ytCerrar" type="button" aria-label="Cerrar video">✕</button>
-    <div class="yt-marco" id="ytMarco"></div>
-  </div>
-</dialog>
-
 <script>
 /* ================== VIDEOS DE YOUTUBE ==================
-   Muestra solos los videos más recientes del canal: el cliente solo tiene que subirlos a YouTube.
-   - Con llave de YouTube (config.js → youtubeApiKey): cuadrícula con miniaturas.
-   - Sin llave: reproductor de YouTube con la lista de videos del canal. */
+   Muestra solos los 2 videos más recientes del canal (sin Shorts): el cliente solo tiene que subirlos a YouTube.
+   Con llave de YouTube (config.js → youtubeApiKey) es más exacto; sin llave también funciona. */
 (function () {
-  const grid = document.getElementById('ytGrid'), modal = document.getElementById('ytModal'), marco = document.getElementById('ytMarco');
-  if (!grid) return;
+  const grid = document.getElementById('ytGrid'); if (!grid) return;
   const KEY = (window.TWILO_CONFIG || {}).youtubeApiKey || '';
-  const listaSubidas = () => { const id = String(CONFIG.YOUTUBE_CANAL_ID || ''); return id.startsWith('UC') ? 'UU' + id.slice(2) : ''; };
-  const embed = (q) => `https://www.youtube-nocookie.com/embed/${q}${q.includes('?') ? '&' : '?'}rel=0&playsinline=1&modestbranding=1`;
-  const fechaBonita = iso => { try { return new Date(iso).toLocaleDateString('es-CO', { day: 'numeric', month: 'short', year: 'numeric' }); } catch (e) { return ''; } };
-  const vacio = () => { grid.innerHTML = `<div class="yt-vacio"><b>Muy pronto verás aquí nuestros videos.</b><span>Mientras tanto, visita nuestro canal.</span></div>`; };
+  const CANTIDAD = 2;
+  const PREFIJO = { videos: 'UULF', shorts: 'UUSH', todos: 'UU' };   // UULF = solo videos normales (sin Shorts ni directos)
+  const tipo = () => PREFIJO[CONFIG.YOUTUBE_TIPO] ? CONFIG.YOUTUBE_TIPO : 'videos';
+  const canal = () => { const id = String(CONFIG.YOUTUBE_CANAL_ID || ''); return id.startsWith('UC') ? id.slice(2) : ''; };
+  // "videos": primero videos normales; si el canal aún no tiene, muestra los Shorts en vertical
+  const ORDEN = { videos: ['UULF', 'UUSH'], shorts: ['UUSH'], todos: ['UU'] };
+  const PARAMS = 'rel=0&playsinline=1&modestbranding=1';
 
-  function pausarMusica() { const mb = document.getElementById('musicBtn'); if (mb && !mb.classList.contains('off')) mb.click(); const r = document.getElementById('reelVid'); if (r && !r.muted) document.getElementById('reelSound')?.click(); }
-
-  function abrir(id, titulo) {
-    pausarMusica();
-    marco.innerHTML = `<iframe src="${embed(id)}&autoplay=1" title="${esc(titulo || 'Video de TWILO EVENTOS')}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>`;
-    if (modal.showModal) modal.showModal(); else modal.setAttribute('open', '');
-  }
-  function cerrar() { marco.innerHTML = ''; if (modal.close) modal.close(); else modal.removeAttribute('open'); }
-  document.getElementById('ytCerrar').addEventListener('click', cerrar);
-  modal.addEventListener('click', e => { if (e.target === modal) cerrar(); });
-  modal.addEventListener('close', () => { marco.innerHTML = ''; });
-
-  function reproductorConLista() {
-    const lista = listaSubidas(); if (!lista) return vacio();
-    grid.innerHTML = `<div class="yt-embed"><iframe src="${embed('videoseries?list=' + lista)}" title="Videos de TWILO EVENTOS en YouTube" loading="lazy" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>`;
-    grid.querySelector('iframe').addEventListener('load', () => {}, { once: true });
+  const vacio = () => {
+    grid.className = 'yt-grid';
+    grid.innerHTML = `<div class="yt-vacio"><b>Muy pronto verás aquí nuestros videos.</b><span>Mientras tanto, visita nuestro canal de YouTube.</span></div>`;
+  };
+  function pintar(ids, vertical) {
+    ids = ids.filter(Boolean).slice(0, CANTIDAD);
+    if (!ids.length) return vacio();
+    grid.className = 'yt-grid' + (vertical ? ' vertical' : '');
+    grid.innerHTML = ids.map((id, i) => `<div class="yt-player"><iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(id)}?${PARAMS}" title="Video ${i + 1} de TWILO EVENTOS" loading="lazy" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>`).join('');
+    // si suena la música de la página y alguien toca un video, la música se apaga
+    grid.addEventListener('pointerdown', () => { const mb = document.getElementById('musicBtn'); if (mb && !mb.classList.contains('off')) mb.click(); }, { once: true });
   }
 
-  async function cuadricula() {
-    const lista = listaSubidas(); if (!lista) return vacio();
-    const r = await fetch(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails&maxResults=12&playlistId=${lista}&key=${KEY}`);
-    if (r.status === 404) return vacio();          // canal todavía sin videos
+  // Con llave: lista exacta de los últimos videos
+  async function conLlave(lista) {
+    const r = await fetch(`https://www.googleapis.com/youtube/v3/playlistItems?part=contentDetails,snippet&maxResults=6&playlistId=${lista}&key=${KEY}`);
+    if (r.status === 404) return [];                   // el canal aún no tiene videos de ese tipo
     if (!r.ok) throw new Error('YouTube ' + r.status);
-    const items = ((await r.json()).items || [])
-      .filter(it => it.snippet && !/^(Private|Deleted) video$/.test(it.snippet.title) && it.contentDetails?.videoId)
-      .slice(0, 6);
-    if (!items.length) return vacio();
-    grid.innerHTML = items.map((it, i) => {
-      const s = it.snippet, th = s.thumbnails || {}, img = (th.maxres || th.standard || th.high || th.medium || th.default || {}).url || '';
-      return `<button class="yt-card${i === 0 ? ' destacado' : ''}" type="button" data-id="${esc(it.contentDetails.videoId)}" data-titulo="${esc(s.title)}">
-        <span class="yt-thumb"><img src="${esc(img)}" alt="" loading="lazy"><span class="yt-play" aria-hidden="true"><span><svg viewBox="0 0 24 24" width="26" height="26"><path fill="currentColor" d="M8 5v14l11-7z"/></svg></span></span></span>
-        <span class="yt-info"><b>${esc(s.title)}</b><small>${fechaBonita(it.contentDetails.videoPublishedAt || s.publishedAt)}</small></span></button>`;
-    }).join('');
-    grid.querySelectorAll('.yt-card').forEach(b => b.addEventListener('click', () => abrir(b.dataset.id, b.dataset.titulo)));
+    return ((await r.json()).items || []).filter(it => !/^(Private|Deleted) video$/.test(it.snippet?.title || '')).map(it => it.contentDetails?.videoId).filter(Boolean);
   }
 
+  // Sin llave: un reproductor invisible de YouTube lee la lista del canal y de ahí sacamos los 2 últimos
+  function sinLlave(lista) {
+    return new Promise((ok, no) => {
+      const listo = () => {
+        const caja = document.createElement('div');
+        caja.style.cssText = 'position:absolute;width:1px;height:1px;left:-9999px;top:0;overflow:hidden';
+        const destino = document.createElement('div'); caja.appendChild(destino); document.body.appendChild(caja);
+        let hecho = false, intentos = 0;
+        const terminar = ids => { if (hecho) return; hecho = true; try { p.destroy(); } catch (e) {} caja.remove(); ids ? ok(ids) : no(new Error('sin lista')); };
+        const p = new YT.Player(destino, {
+          host: 'https://www.youtube-nocookie.com', width: 1, height: 1,
+          playerVars: { listType: 'playlist', list: lista, playsinline: 1 },
+          events: {
+            onReady: () => { const t = setInterval(() => { const ids = p.getPlaylist && p.getPlaylist(); if (ids && ids.length) { clearInterval(t); terminar(ids); } else if (++intentos > 10) { clearInterval(t); terminar([]); } }, 300); },
+            onError: () => terminar([])
+          }
+        });
+        setTimeout(() => terminar(null), 12000);
+      };
+      if (window.YT && window.YT.Player) return listo();
+      const previo = window.onYouTubeIframeAPIReady;
+      window.onYouTubeIframeAPIReady = () => { previo && previo(); listo(); };
+      const s = document.createElement('script'); s.src = 'https://www.youtube.com/iframe_api'; s.onerror = () => no(new Error('no cargó YouTube')); document.head.appendChild(s);
+    });
+  }
+
+  async function obtener(lista) {
+    if (KEY) { try { return await conLlave(lista); } catch (e) { console.warn('YouTube API:', e); } }
+    try { return await sinLlave(lista); } catch (e) { console.warn('YouTube:', e); return []; }
+  }
   async function cargar() {
     window.__ytCargado = true;
-    try { if (KEY) await cuadricula(); else reproductorConLista(); }
-    catch (e) { console.warn('No se pudo usar la API de YouTube, uso el reproductor con lista:', e); reproductorConLista(); }
+    if (!canal()) return vacio();
+    for (const pref of ORDEN[tipo()]) {
+      const ids = await obtener(pref + canal());
+      if (ids.length) return pintar(ids, pref === 'UUSH');
+    }
+    vacio();
   }
   window.__ytRecargar = cargar;
 
